@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banana Empire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #dashboard {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Banana Empire</h1>
+    <div id="dashboard">
+        <p>Bananas: <span id="banana-count">0</span></p>
+        <p>Banana Trees: <span id="tree-count">1</span></p>
+        <p>Harvest Rate: <span id="harvest-rate">1</span> bananas/second</p>
+    </div>
+    <button class="button" onclick="plantTree()">Plant Banana Tree</button>
+    <button class="button" onclick="harvestBananas()">Harvest Bananas</button>
+
+    <script src="game.js"></script>
+</body>
+</html>
