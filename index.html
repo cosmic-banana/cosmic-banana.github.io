@@ -8,23 +8,35 @@
 </head>
 <body>
     <h1>Banana Empire</h1>
-    <div id="dashboard">
-        <p>Bananas: <span id="banana-count">0</span></p>
-        <p>Banana Trees: <span id="tree-count">1</span></p>
-        <p>Harvest Rate: <span id="harvest-rate">1</span> bananas/second</p>
-        <p>Workers: <span id="worker-count">0</span></p>
-        <p>Packaging Level: <span id="packaging-level">1</span></p>
-        <p>Bananas Packed: <span id="bananas-packed">0</span></p>
-        <p>Packed Bananas: <span id="packed-banana-count">0</span></p>
-        <p>Market Price: $<span id="market-price">2</span></p>
-        <p>Total Profit: $<span id="total-profit">0</span></p>
+    <div class="tabs">
+        <button class="tab-button" onclick="openTab('dashboard')">Dashboard</button>
+        <button class="tab-button" onclick="openTab('packaging')">Packaging & Selling</button>
     </div>
-    <button class="button" onclick="plantTree()">Plant Banana Tree (10 bananas)</button>
-    <button class="button" onclick="hireWorker()">Hire Worker (20 bananas)</button>
-    <button class="button" onclick="upgradePackaging()">Upgrade Packaging (50 bananas)</button>
-    <button class="button" onclick="harvestBananas()">Harvest Bananas</button>
-    <button class="button" onclick="packageBananas()">Package Bananas</button>
-    <button class="button" onclick="sellBananas()">Sell Bananas</button>
+
+    <div id="dashboard" class="tab-content">
+        <div>
+            <p>Bananas: <span id="banana-count">0</span></p>
+            <p>Banana Trees: <span id="tree-count">1</span></p>
+            <p>Harvest Rate: <span id="harvest-rate">1</span> bananas/second</p>
+            <p>Workers: <span id="worker-count">0</span></p>
+            <p>Total Profit: $<span id="total-profit">0</span></p>
+        </div>
+        <button class="button" onclick="plantTree()">Plant Banana Tree (10 bananas)</button>
+        <button class="button" onclick="hireWorker()">Hire Worker (20 bananas)</button>
+        <button class="button" onclick="harvestBananas()">Harvest Bananas</button>
+    </div>
+
+    <div id="packaging" class="tab-content" style="display:none">
+        <div>
+            <p>Packaging Level: <span id="packaging-level">1</span></p>
+            <p>Bananas Packed: <span id="bananas-packed">0</span></p>
+            <p>Packed Bananas: <span id="packed-banana-count">0</span></p>
+            <p>Market Price: $<span id="market-price">2</span></p>
+        </div>
+        <button class="button" onclick="upgradePackaging()">Upgrade Packaging (50 bananas)</button>
+        <button class="button" onclick="packageBananas()">Package Bananas</button>
+        <button class="button" onclick="sellBananas()">Sell Bananas</button>
+    </div>
 
     <script src="game.js"></script>
 </body>

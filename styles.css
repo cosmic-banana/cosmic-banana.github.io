@@ -8,12 +8,33 @@ body {
     padding: 10px 20px;
     font-size: 16px;
 }
-#dashboard {
+.tab-button {
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: 0.3s;
+    font-size: 18px;
+}
+.tab-button:hover {
+    background-color: #ddd;
+}
+.tab-button.active {
+    background-color: #ccc;
+}
+.tab-content {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
+#dashboard, #packaging {
     margin-top: 20px;
     border: 2px solid #f5c542;
     padding: 10px;
     border-radius: 10px;
 }
-#dashboard p {
+#dashboard p, #packaging p {
     margin: 5px;
 }

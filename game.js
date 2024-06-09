@@ -7,6 +7,7 @@ let packagingLevel = 1;
 let bananasPacked = 0;
 let packedBananaCount = 0;
 let marketPrice = 2;
+let totalProfit = 0;
 
 function updateDashboard() {
     document.getElementById('banana-count').innerText = bananaCount;
@@ -67,11 +68,22 @@ function sellBananas() {
     updateDashboard();
 }
 
-let totalProfit = 0;
-
 setInterval(() => {
     bananaCount += harvestRate + workerRate;
     updateDashboard();
 }, 1000);
+
+function openTab(tabName) {
+    var i, tabContent, tabButton;
+    tabContent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+    }
+    tabButton = document.getElementsByClassName("tab-button");
+    for (i = 0; i < tabButton.length; i++) {
+        tabButton[i].className = tabButton[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+}
 
 updateDashboard();
