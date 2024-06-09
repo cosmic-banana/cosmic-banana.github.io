@@ -6,16 +6,25 @@
     <title>Banana Empire</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <h1>Banana Empire</h1>
     <div id="dashboard">
         <p>Bananas: <span id="banana-count">0</span></p>
         <p>Banana Trees: <span id="tree-count">1</span></p>
         <p>Harvest Rate: <span id="harvest-rate">1</span> bananas/second</p>
+        <p>Workers: <span id="worker-count">0</span></p>
+        <p>Packaging Level: <span id="packaging-level">1</span></p>
+        <p>Bananas Packed: <span id="bananas-packed">0</span></p>
+        <p>Packed Bananas: <span id="packed-banana-count">0</span></p>
+        <p>Market Price: $<span id="market-price">2</span></p>
+        <p>Total Profit: $<span id="total-profit">0</span></p>
     </div>
-    <button class="button" onclick="plantTree()">Plant Banana Tree</button>
+    <button class="button" onclick="plantTree()">Plant Banana Tree (10 bananas)</button>
+    <button class="button" onclick="hireWorker()">Hire Worker (20 bananas)</button>
+    <button class="button" onclick="upgradePackaging()">Upgrade Packaging (50 bananas)</button>
     <button class="button" onclick="harvestBananas()">Harvest Bananas</button>
+    <button class="button" onclick="packageBananas()">Package Bananas</button>
+    <button class="button" onclick="sellBananas()">Sell Bananas</button>
 
     <script src="game.js"></script>
 </body>
