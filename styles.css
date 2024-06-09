@@ -25,12 +25,13 @@ body {
 }
 .tab-content {
     display: none;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     padding: 10px;
     margin-top: 10px;
 }
-#dashboard, #packaging {
+#dashboard div, #packaging div {
     margin-top: 20px;
+    margin-bottom: 20px;
     border: 2px solid #f5c542;
     padding: 10px;
     border-radius: 10px;
