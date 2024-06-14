@@ -29,13 +29,21 @@ body {
     padding: 10px;
     margin-top: 10px;
 }
-#dashboard div, #packaging div {
-    margin-top: 20px;
+#stats {
     margin-bottom: 20px;
     border: 2px solid #f5c542;
     padding: 10px;
     border-radius: 10px;
 }
-#dashboard p, #packaging p {
+#plantation p, #packaging p {
     margin: 5px;
+}
+#buyables {
+    display: flex;
+    flex-direction: column;
+
+    .button {
+        width: 260px;
+        text-align: left;
+    }
 }
