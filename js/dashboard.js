@@ -2,7 +2,7 @@ class Dashboard {
     constructor(game) {
         this.game = game;
         
-        this.dollars = 0;
+        this.dollars = 14348550000000000;
         this.bananaCount = 0;
     }
 

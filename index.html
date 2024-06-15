@@ -8,15 +8,15 @@
 </head>
 <body>
     <h1>Banana Empire</h1>
+    <div id="dashboard">
+        <p>Capital: <span id="dollars">0</span></p>
+        <p>Bananas: <span id="banana-count">0</span></p>
+    </div>
     <div class="tabs">
         <button class="tab-button" onclick="openTab('plantation')">Plantation</button>
         <button class="tab-button" onclick="openTab('packaging')">Packaging & Selling</button>
     </div>
 
-    <div id="dashboard">
-        <p>Dollars: $<span id="dollars">0</span></p>
-        <p>Bananas: <span id="banana-count">0</span></p>
-    </div>
 
     <div id="plantation" class="tab-content">
         <div id="stats">
@@ -25,8 +25,8 @@
             <p>Workers: <span id="worker-count">0</span></p>
         </div>
         <div id="buyables">
-            <button class="button" onclick="plantation.plantTree()">Plant Banana Tree</button>
-            <button class="button" onclick="plantation.hireWorker()">Hire Worker</button>
+            <button class="button" onclick="plantation.plantTree()">Plant Banana Tree <span id="plant-tree-cost"></span></button>
+            <button class="button" onclick="plantation.hireWorker()">Hire Worker <span id="hire-worker-cost"></span></button>
         </div>
     </div>
 

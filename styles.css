@@ -43,7 +43,14 @@ body {
     flex-direction: column;
 
     .button {
+        display: flex;
+        justify-content: space-between;
         width: 260px;
         text-align: left;
+
+        span {
+            text-align: right;
+            font-weight: bold;
+        }
     }
 }
