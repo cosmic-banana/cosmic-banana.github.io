@@ -1,0 +1,35 @@
+Plantation Jobs
+	harvest - cutter+carrier+deleaf
+	fertilizers
+	package
+	irrigation
+	pest control
+	maintenance
+	pruning
+	
+Laboratory Jobs
+	?
+==================================
+Transport Jobs
+	driver
+	captain
+	pilot
+Administration jobs
+	payroll
+	HR - recruiting + training
+	
+Processing jobs
+	packing
+	sorting
+	grading
+	processing (delay ripening)
+	
+Warehouse jobs
+	Security
+===================================
+Sales -> Marketing Jobs
+
+Sales -> Retail Jobs
+	sell
+===================================
+Technology Jobs

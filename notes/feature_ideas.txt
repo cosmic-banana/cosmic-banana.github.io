@@ -1,0 +1,12 @@
+Local Market: Initial sales point with lower profit margins.
+Regional Market: Higher profit margins, requires more infrastructure.
+Global Market: Highest profit margins, requires advanced logistics.
+
+Machinery: Automate harvesting and packaging.
+
+
+Weather Events: Affect banana production (e.g., storms, droughts).
+Market Fluctuations: Changes in banana prices due to supply and demand.
+Political Events: Trade tariffs, export restrictions, and subsidies
+
+Display the status of each market and the logistics chain. 
