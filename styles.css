@@ -54,3 +54,23 @@ body {
         }
     }
 }
+
+#jobs {
+    display: flex;
+    flex-direction: column;
+
+    label {
+        display: flex;
+        justify-content: space-between;
+        width: 260px;
+
+        div {
+            width: auto;
+
+            span {
+                display: inline-block;
+                width: 34px;
+            }
+        }
+    }
+}

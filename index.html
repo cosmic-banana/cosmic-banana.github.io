@@ -28,6 +28,11 @@
             <button class="button" onclick="plantation.plantTree()">Plant Banana Tree <span id="plant-tree-cost"></span></button>
             <button class="button" onclick="plantation.hireWorker()">Hire Worker <span id="hire-worker-cost"></span></button>
         </div>
+        <div id="jobs">
+            <label>Harvester <div><button onclick="plantation.removeHarvestWorker()">–</button><span id="harvest-worker-count"></span><button onclick="plantation.addHarvestWorker()">+</button></div></label>
+            <label>Fertilizer</label>
+            <label>Irrigator</label>
+        </div>
     </div>
 
     <div id="packaging" class="tab-content" style="display:none">

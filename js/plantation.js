@@ -11,6 +11,11 @@ class Plantation {
         this.workerCount = 0;
         this.workerRate = 0;
         this.harvestRate = 1;
+
+        this.workers = 15;
+        this.harvestWorkerCount = 0;
+        this.fertilizeWorkerCount = 0;
+        this.irrigateWorkerCount = 0;
     }
 
     plantTree() {
@@ -32,6 +37,22 @@ class Plantation {
             this.workerRate += 0.5;
             this.game.updateDisplay();
             this.game.updatePrices();
+        }
+    }
+
+    addHarvestWorker() {
+        if (this.workers > 0) {
+            this.workers--;
+            this.harvestWorkerCount++;
+            this.game.updateWorkerCount();
+        }
+    }
+    
+    removeHarvestWorker() {
+        if (this.harvestWorkerCount > 0) {
+            this.harvestWorkerCount--;
+            this.workers++;
+            this.game.updateWorkerCount();
         }
     }
 }

@@ -24,6 +24,10 @@ class Game {
         document.getElementById('plant-tree-cost').innerText = formatNumber(game.plantation.plantTreeCost);
         document.getElementById('hire-worker-cost').innerText = formatNumber(game.plantation.hireWorkerCost);
     }
+    
+    updateWorkerCount() {
+        document.getElementById('harvest-worker-count').innerText = game.plantation.harvestWorkerCount;
+    }
 }
 
 setInterval(() => {
@@ -62,6 +66,7 @@ function openTab(tabName) {
 
 const game = new Game();
 game.updatePrices();
+game.updateWorkerCount();
 
 window.openTab = openTab;
 window.plantation = game.plantation;
