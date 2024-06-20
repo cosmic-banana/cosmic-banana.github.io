@@ -30,17 +30,20 @@ body {
     margin-top: 10px;
 }
 #stats {
-    margin-bottom: 20px;
     border: 2px solid #f5c542;
     padding: 10px;
     border-radius: 10px;
 }
-#plantation p, #packaging p {
+#stats p {
     margin: 5px;
 }
 #buyables {
     display: flex;
     flex-direction: column;
+
+    border: 2px solid #24a135;
+    padding: 10px;
+    border-radius: 10px;
 
     .button {
         display: flex;
@@ -58,6 +61,11 @@ body {
 #jobs {
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+    border: 2px solid #e73c25;
+    padding: 10px;
+    border-radius: 10px;
 
     label {
         display: flex;

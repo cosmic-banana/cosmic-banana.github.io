@@ -14,35 +14,47 @@
     </div>
     <div class="tabs">
         <button class="tab-button" onclick="openTab('plantation')">Plantation</button>
-        <button class="tab-button" onclick="openTab('packaging')">Packaging & Selling</button>
+        <button class="tab-button" onclick="openTab('sales')">Sales</button>
+        <button class="tab-button" onclick="openTab('packaging')">Logistics</button>
     </div>
 
 
     <div id="plantation" class="tab-content">
         <div id="stats">
-            <p>Banana Trees: <span id="tree-count">1</span></p>
-            <p>Harvest Rate: <span id="harvest-rate">1</span> bananas/second</p>
-            <p>Workers: <span id="worker-count">0</span></p>
+            <p>Placeholder: <span id="tree-count">1</span></p>
+            <p>Placeholder: <span id="harvest-rate">1</span></p>
+            <p>Placeholder: <span id="worker-count">0</span></p>
         </div>
         <div id="buyables">
-            <button class="button" onclick="plantation.plantTree()">Plant Banana Tree <span id="plant-tree-cost"></span></button>
+            <button class="button" onclick="plantation.plantTree()">Placeholder <span id="plant-tree-cost"></span></button>
             <button class="button" onclick="plantation.hireWorker()">Hire Worker <span id="hire-worker-cost"></span></button>
         </div>
         <div id="jobs">
+            <div>Workers <span id="plantation-available-count"></span> / <span id="plantation-total-count"></span></div>
             <label>Harvester <div><button onclick="plantation.removeHarvestWorker()">–</button><span id="harvest-worker-count"></span><button onclick="plantation.addHarvestWorker()">+</button></div></label>
             <label>Fertilizer</label>
             <label>Irrigator</label>
         </div>
     </div>
 
-    <div id="packaging" class="tab-content" style="display:none">
+    <div id="sales" class="tab-content" style="display:none">
         <div id="stats">
-            <p>Bananas Packed: <span id="bananas-packed">0</span></p>
-            <p>Packed Bananas: <span id="packed-banana-count">0</span></p>
             <p>Market Price: $<span id="market-price">2</span></p>
         </div>
-        <button class="button" onclick="logistics.packageBananas()">Package Bananas</button>
-        <button class="button" onclick="logistics.sellBananas()">Sell Bananas</button>
+        <div id="buyables">
+            <button class="button" onclick="sales.hireWorker()">Hire Worker <span id="random-placeholder"></span></button>
+        </div>
+        <div id="jobs">
+            <div>Workers <span id="sales-available-count"></span> / <span id="sales-total-count"></span></div>
+            <label>Salesman<div><button onclick="sales.removeSalesWorker()">–</button><span id="sales-worker-count"></span><button onclick="sales.addSalesWorker()">+</button></div></label>
+        </div>
+    </div>
+
+    <div id="packaging" class="tab-content" style="display:none">
+        <div id="stats">
+            <p>Placeholder: <span id="bananas-packed">0</span></p>
+        </div>
+        <!-- <button class="button" onclick="logistics.packageBananas()">Package Bananas</button> -->
     </div>
 
     <script type="module" src="js/main.js"></script>

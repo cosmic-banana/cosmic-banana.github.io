@@ -1,19 +1,21 @@
 import Plantation from './plantation.js';
 import Logistics from './logistics.js';
 import Dashboard from './dashboard.js';
+import Sales from './sales.js';
 
 class Game {
     plantation = new Plantation(this);
     logistics = new Logistics(this);
     dashboard = new Dashboard(this);
+    sales = new Sales(this);
     
     updateDisplay() {
         document.getElementById('banana-count').innerText = game.dashboard.bananaCount;
         document.getElementById('dollars').innerText = formatNumber(game.dashboard.dollars);
 
-        document.getElementById('tree-count').innerText = game.plantation.treeCount;
-        document.getElementById('harvest-rate').innerText = game.plantation.harvestRate;
-        document.getElementById('worker-count').innerText = game.plantation.workerCount;
+        // document.getElementById('tree-count').innerText = game.plantation.treeCount;
+        // document.getElementById('harvest-rate').innerText = game.plantation.harvestRate;
+        // document.getElementById('worker-count').innerText = game.plantation.workerCount;
 
         document.getElementById('bananas-packed').innerText = game.logistics.bananasPacked;
         document.getElementById('packed-banana-count').innerText = game.logistics.packedBananaCount;
@@ -23,10 +25,17 @@ class Game {
     updatePrices() {
         document.getElementById('plant-tree-cost').innerText = formatNumber(game.plantation.plantTreeCost);
         document.getElementById('hire-worker-cost').innerText = formatNumber(game.plantation.hireWorkerCost);
+        document.getElementById('random-placeholder').innerText = formatNumber(game.sales.hireWorkerCost);
     }
     
     updateWorkerCount() {
+        document.getElementById('plantation-total-count').innerText = game.plantation.totalWorkerCount;
+        document.getElementById('plantation-available-count').innerText = game.plantation.getAvailableWorkerCount();
         document.getElementById('harvest-worker-count').innerText = game.plantation.harvestWorkerCount;
+
+        document.getElementById('sales-total-count').innerText = game.sales.totalWorkerCount;
+        document.getElementById('sales-available-count').innerText = game.sales.getAvailableWorkerCount();
+        document.getElementById('sales-worker-count').innerText = game.sales.salesWorkerCount;
     }
 }
 
@@ -71,3 +80,4 @@ game.updateWorkerCount();
 window.openTab = openTab;
 window.plantation = game.plantation;
 window.logistics = game.logistics;
+window.sales = game.sales;
