@@ -4,9 +4,10 @@ Global Market: Highest profit margins, requires advanced logistics.
 
 Machinery: Automate harvesting and packaging.
 
-
 Weather Events: Affect banana production (e.g., storms, droughts).
 Market Fluctuations: Changes in banana prices due to supply and demand.
 Political Events: Trade tariffs, export restrictions, and subsidies
 
-Display the status of each market and the logistics chain. 
+* jobs can have very varied outputs and some jobs can have resource drains, like R&D costs money/time
+
+- Different gameplay features (R&D)

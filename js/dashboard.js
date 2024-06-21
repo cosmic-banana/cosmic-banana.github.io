@@ -2,13 +2,13 @@ class Dashboard {
     constructor(game) {
         this.game = game;
         
-        this.dollars = 1000;
+        this.dollars = 30000;
         this.bananaCount = 0;
     }
 
     update() {
-        this.bananaCount += this.game.plantation.getBananas();
-        this.dollars += this.game.sales.getIncome();
+        this.bananaCount += this.game.plantation.tick();
+        this.dollars += this.game.sales.tick();
     }
 }
 

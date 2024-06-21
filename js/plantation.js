@@ -11,12 +11,19 @@ class Plantation {
         this.hireWorkerCost = 100;
 
         this.totalWorkerCount = 1;
-        this.harvestWorkerCount = 0;
+        this.harvestWorkerCount = 0; // cutter+carrier+deleaf
         this.fertilizeWorkerCount = 0;
         this.irrigateWorkerCount = 0;
+        // pest control
+        // maintenance
+        // pruning
     }
 
-    getBananas() { //only way to increase banana count
+    tick() {
+        return this.getBananaAmount();
+    }
+    
+    getBananaAmount() {
         return Plantation.BASE_HARVEST_RATE * this.harvestWorkerCount;
     }
 
@@ -34,7 +41,7 @@ class Plantation {
             // this.treeCount += 1;
             // this.harvestRate += 1;
             // this.game.updateDisplay();
-            this.game.updatePrices();
+            this.game.updateOnPurchase();
         }
     }
 
@@ -43,23 +50,22 @@ class Plantation {
             this.game.dashboard.dollars -= this.hireWorkerCost;
             this.hireWorkerCost = Math.ceil(this.hireWorkerCost * Plantation.HIRE_WORKER_COST_GROWTH);
             this.totalWorkerCount++;
-            this.game.updateDisplay();
-            this.game.updatePrices();
-            this.game.updateWorkerCount();
+            this.game.updateOnPurchase();
+            this.game.updateOnWorkerChange();
         }
     }
 
     addHarvestWorker() {
         if (this.getAvailableWorkerCount() > 0) {
             this.harvestWorkerCount++;
-            this.game.updateWorkerCount();
+            this.game.updateOnWorkerChange();
         }
     }
     
     removeHarvestWorker() {
         if (this.harvestWorkerCount > 0) {
             this.harvestWorkerCount--;
-            this.game.updateWorkerCount();
+            this.game.updateOnWorkerChange();
         }
     }
 }

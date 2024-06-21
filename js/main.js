@@ -9,55 +9,56 @@ class Game {
     dashboard = new Dashboard(this);
     sales = new Sales(this);
     
-    updateDisplay() {
-        document.getElementById('banana-count').innerText = game.dashboard.bananaCount;
+    updateOnTick() {
         document.getElementById('dollars').innerText = formatNumber(game.dashboard.dollars);
-
-        // document.getElementById('tree-count').innerText = game.plantation.treeCount;
-        // document.getElementById('harvest-rate').innerText = game.plantation.harvestRate;
-        // document.getElementById('worker-count').innerText = game.plantation.workerCount;
-
-        document.getElementById('bananas-packed').innerText = game.logistics.bananasPacked;
-        document.getElementById('packed-banana-count').innerText = game.logistics.packedBananaCount;
-        document.getElementById('market-price').innerText = game.logistics.marketPrice;
+        document.getElementById('banana-count').innerText = formatNumber(game.dashboard.bananaCount, false);
     }
-
-    updatePrices() {
+    
+    updateOnPurchase() {
+        this.updateOnTick();
         document.getElementById('plant-tree-cost').innerText = formatNumber(game.plantation.plantTreeCost);
         document.getElementById('hire-worker-cost').innerText = formatNumber(game.plantation.hireWorkerCost);
         document.getElementById('random-placeholder').innerText = formatNumber(game.sales.hireWorkerCost);
     }
     
-    updateWorkerCount() {
+    updateOnWorkerChange() {
         document.getElementById('plantation-total-count').innerText = game.plantation.totalWorkerCount;
         document.getElementById('plantation-available-count').innerText = game.plantation.getAvailableWorkerCount();
         document.getElementById('harvest-worker-count').innerText = game.plantation.harvestWorkerCount;
-
+        document.getElementById('harvest-rate').innerText = game.plantation.getBananaAmount();
+        
         document.getElementById('sales-total-count').innerText = game.sales.totalWorkerCount;
         document.getElementById('sales-available-count').innerText = game.sales.getAvailableWorkerCount();
         document.getElementById('sales-worker-count').innerText = game.sales.salesWorkerCount;
+        document.getElementById('sorting-worker-count').innerText = game.sales.sortingWorkerCount;
+        document.getElementById('packaging-worker-count').innerText = game.sales.packagingWorkerCount;
+        document.getElementById('freight-crew-worker-count').innerText = game.sales.freightCrewWorkerCount;
+        document.getElementById('sell-value').innerText = game.sales.getSellValue();
+        document.getElementById('sell-capacity').innerText = game.sales.getSellAmount();
     }
 }
 
 setInterval(() => {
     game.dashboard.update();
-    game.updateDisplay();
+    game.updateOnTick();
 }, 1000);
 
-function formatNumber(number) {
+function formatNumber(number, isMoney = true) {
+    let formattedNumber;
     if (number < 100000) {
-        return "$" + number;
+        formattedNumber = Math.floor(number);
     } else if (number < 1000000) {
-        return "$" + Math.floor(number*10 / 1000)/10 + "K";
+        formattedNumber = Math.floor(number*10 / 1000)/10 + "K";
     } else if (number < 1000000000) {
-        return "$" + Math.floor(number*10/1000000)/10 + "M";
+        formattedNumber = Math.floor(number*10/1000000)/10 + "M";
     } else if (number < 1000000000000) {
-        return "$" + Math.floor(number*10/1000000000)/10 + "B";
+        formattedNumber = Math.floor(number*10/1000000000)/10 + "B";
     } else if (number < 1000000000000000) {
-        return "$" + Math.floor(number*10/1000000000000)/10 + "T";
+        formattedNumber = Math.floor(number*10/1000000000000)/10 + "T";
     } else if (number < 1000000000000000000) {
-        return "$" + Math.floor(number*10/1000000000000000)/10 + "Q";
+        formattedNumber = Math.floor(number*10/1000000000000000)/10 + "Q";
     }
+    return (isMoney) ? "$" + formattedNumber : formattedNumber;
 }
 
 function openTab(tabName) {
@@ -74,8 +75,8 @@ function openTab(tabName) {
 }
 
 const game = new Game();
-game.updatePrices();
-game.updateWorkerCount();
+game.updateOnPurchase();
+game.updateOnWorkerChange();
 
 window.openTab = openTab;
 window.plantation = game.plantation;

@@ -21,9 +21,7 @@
 
     <div id="plantation" class="tab-content">
         <div id="stats">
-            <p>Placeholder: <span id="tree-count">1</span></p>
-            <p>Placeholder: <span id="harvest-rate">1</span></p>
-            <p>Placeholder: <span id="worker-count">0</span></p>
+            <p>Harvest rate: <span id="harvest-rate"></span></p>
         </div>
         <div id="buyables">
             <button class="button" onclick="plantation.plantTree()">Placeholder <span id="plant-tree-cost"></span></button>
@@ -39,7 +37,8 @@
 
     <div id="sales" class="tab-content" style="display:none">
         <div id="stats">
-            <p>Market Price: $<span id="market-price">2</span></p>
+            <p>Sell value: <span id="sell-value"></span></p>
+            <p>Sell capacity: <span id="sell-capacity"></span></p>
         </div>
         <div id="buyables">
             <button class="button" onclick="sales.hireWorker()">Hire Worker <span id="random-placeholder"></span></button>
@@ -47,6 +46,9 @@
         <div id="jobs">
             <div>Workers <span id="sales-available-count"></span> / <span id="sales-total-count"></span></div>
             <label>Salesman<div><button onclick="sales.removeSalesWorker()">–</button><span id="sales-worker-count"></span><button onclick="sales.addSalesWorker()">+</button></div></label>
+            <label>Sorting<div><button onclick="sales.removeSortingWorker()">–</button><span id="sorting-worker-count"></span><button onclick="sales.addSortingWorker()">+</button></div></label>
+            <label>Packaging<div><button onclick="sales.removePackagingWorker()">–</button><span id="packaging-worker-count"></span><button onclick="sales.addPackagingWorker()">+</button></div></label>
+            <label>Freight Crew<div><button onclick="sales.removeFreightCrewWorker()">–</button><span id="freight-crew-worker-count"></span><button onclick="sales.addFreightCrewWorker()">+</button></div></label>
         </div>
     </div>
 
