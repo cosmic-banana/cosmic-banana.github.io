@@ -1,0 +1,3 @@
+- product pipeline is a involved process
+    * need ux indication which harvest stage is ongoing
+    * need mechanism to progress/start/finish any given stage

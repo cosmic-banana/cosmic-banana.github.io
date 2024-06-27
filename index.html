@@ -13,50 +13,136 @@
         <p>Bananas: <span id="banana-count">0</span></p>
     </div>
     <div class="tabs">
-        <button class="tab-button" onclick="openTab('plantation')">Plantation</button>
-        <button class="tab-button" onclick="openTab('sales')">Sales</button>
-        <button class="tab-button" onclick="openTab('packaging')">Logistics</button>
+        <button class="tab-button" onclick="openTab('production', this)">Production</button>
+        <button class="tab-button" onclick="openTab('sales', this)">Sales</button>
+        <button class="tab-button" onclick="openTab('admin', this)">Administration</button>
+        <button class="tab-button" onclick="openTab('tech', this)">Technology</button>
+        <button class="tab-button" onclick="openTab('logistics', this)">Logistics</button>
     </div>
 
-
-    <div id="plantation" class="tab-content">
+    <div id="production" class="tab-content">
         <div id="stats">
             <p>Harvest rate: <span id="harvest-rate"></span></p>
         </div>
-        <div id="buyables">
-            <button class="button" onclick="plantation.plantTree()">Placeholder <span id="plant-tree-cost"></span></button>
-            <button class="button" onclick="plantation.hireWorker()">Hire Worker <span id="hire-worker-cost"></span></button>
+        <div id="jobs"> <!-- should probably be a class -->
+            <div>Workers <span id="production-available-count"></span> / <span id="production-total-count"></span></div>
+            <div class="job-tabs">
+                <button class="job-tab-button" onclick="openTab('plantation', this)">Plantation</button>
+                <button class="job-tab-button" onclick="openTab('laboratory', this)">Laboratory</button>
+            </div>
+            <div id="plantation" class="job-tab-content">
+                <div>
+                    <label>Harvesting</label>
+                    <div> <button onclick="production.removeWorker('harvesting')">–</button>
+                          <span id="harvest-worker-count"></span>
+                          <button onclick="production.addWorker('harvesting')">+</button></div>
+                </div>
+                <div>
+                    <label>Irrigation</label>
+                    <div> <button onclick="production.removeWorker('irrigation')">–</button>
+                          <span id="irrigate-worker-count"></span>
+                          <button onclick="production.addWorker('irrigation')">+</button></div>
+                </div>
+                <div>
+                    <label>Fertilizing</label>
+                    <div> <button onclick="production.removeWorker('fertilizing')">–</button>
+                          <span id="fertilize-worker-count"></span>
+                          <button onclick="production.addWorker('fertilizing')">+</button></div>
+                </div>
+                <div>
+                    <label>Pest Control</label>
+                    <div> <button onclick="production.removeWorker('pestControl')">–</button>
+                          <span id="pest-control-worker-count"></span>
+                          <button onclick="production.addWorker('pestControl')">+</button></div>
+                </div>
+                <div>
+                    <label>Pruning</label>
+                    <div> <button onclick="production.removeWorker('pruning')">–</button>
+                          <span id="prune-worker-count"></span>
+                          <button onclick="production.addWorker('pruning')">+</button></div>
+                </div>
+                <div>
+                    <label>Maintance</label>
+                    <div> <button onclick="production.removeWorker('maintenance')">–</button>
+                          <span id="maintenance-worker-count"></span>
+                          <button onclick="production.addWorker('maintenance')">+</button></div>
+                </div>
+            </div>
+            <div id="laboratory" class="job-tab-content">
+                <label>placeholder</label>
+            </div>
         </div>
-        <div id="jobs">
-            <div>Workers <span id="plantation-available-count"></span> / <span id="plantation-total-count"></span></div>
-            <label>Harvester <div><button onclick="plantation.removeHarvestWorker()">–</button><span id="harvest-worker-count"></span><button onclick="plantation.addHarvestWorker()">+</button></div></label>
-            <label>Fertilizer</label>
-            <label>Irrigator</label>
+        <div id="buyables">
+            <button class="button" onclick="production.plantTree()">Plant Tree <span id="plant-tree-cost"></span></button>
+            <button class="button" onclick="production.plantTree()">Expand Water Tank <span id="plant-tree-cost"></span></button>
+            <button class="button" onclick="production.plantTree()">Improve Formula <span id="plant-tree-cost"></span></button>
+            <button class="button" onclick="production.plantTree()">Upgrade Pesticide <span id="plant-tree-cost"></span></button>
+            <button class="button" onclick="production.plantTree()">Sharpen Secateurs <span id="plant-tree-cost"></span></button>
+            <button class="button" onclick="production.plantTree()">Buy Manuals <span id="plant-tree-cost"></span></button>
         </div>
     </div>
 
-    <div id="sales" class="tab-content" style="display:none">
+    <div id="sales" class="tab-content">
         <div id="stats">
             <p>Sell value: <span id="sell-value"></span></p>
             <p>Sell capacity: <span id="sell-capacity"></span></p>
         </div>
         <div id="buyables">
-            <button class="button" onclick="sales.hireWorker()">Hire Worker <span id="random-placeholder"></span></button>
+            <button class="button" onclick="console.log('placeholder')">Placeholder <span id="random-placeholder"></span></button>
         </div>
         <div id="jobs">
             <div>Workers <span id="sales-available-count"></span> / <span id="sales-total-count"></span></div>
-            <label>Salesman<div><button onclick="sales.removeSalesWorker()">–</button><span id="sales-worker-count"></span><button onclick="sales.addSalesWorker()">+</button></div></label>
-            <label>Sorting<div><button onclick="sales.removeSortingWorker()">–</button><span id="sorting-worker-count"></span><button onclick="sales.addSortingWorker()">+</button></div></label>
-            <label>Packaging<div><button onclick="sales.removePackagingWorker()">–</button><span id="packaging-worker-count"></span><button onclick="sales.addPackagingWorker()">+</button></div></label>
-            <label>Freight Crew<div><button onclick="sales.removeFreightCrewWorker()">–</button><span id="freight-crew-worker-count"></span><button onclick="sales.addFreightCrewWorker()">+</button></div></label>
+            <div class="job-tabs">
+                <button class="job-tab-button" onclick="openTab('retail', this)">Retail</button>
+                <button class="job-tab-button" onclick="openTab('processing', this)">Processsing</button>
+                <button class="job-tab-button" onclick="openTab('transport', this)">Transport</button>
+            </div>
+            <div id="retail" class="job-tab-content">
+                <div>
+                    <label>Salesman</label>
+                    <div> <button onclick="sales.removeWorker('salesman')">–</button>
+                          <span id="sales-worker-count"></span>
+                          <button onclick="sales.addWorker('salesman')">+</button></div>
+                </div>
+                <div>
+                    <label>Packaging</label>
+                    <div> <button onclick="sales.removeWorker('packaging')">–</button>
+                          <span id="packaging-worker-count"></span>
+                          <button onclick="sales.addWorker('packaging')">+</button></div>
+                </div>
+            </div>
+            <div id="processing" class="job-tab-content">
+                <div>
+                    <label>Sorting</label>
+                    <div> <button onclick="sales.removeWorker('sorting')">–</button>
+                          <span id="sorting-worker-count"></span>
+                          <button onclick="sales.addWorker('sorting')">+</button></div>
+                </div>
+            </div>
+            <div id="transport" class="job-tab-content">
+                <div>
+                    <label>Freight Crew</label>
+                    <div> <button onclick="sales.removeWorker('freightCrew')">–</button>
+                          <span id="freight-crew-worker-count"></span>
+                          <button onclick="sales.addWorker('freightCrew')">+</button></div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div id="packaging" class="tab-content" style="display:none">
-        <div id="stats">
-            <p>Placeholder: <span id="bananas-packed">0</span></p>
+    
+    <div id="admin" class="tab-content">
+        <p>worker management and education / payroll / HR - recruiting + training </p>
+        <div id="buyables">
+            <button class="button" onclick="administration.hireWorker()">Hire Worker <span id="hire-worker-cost"></span></button>
         </div>
-        <!-- <button class="button" onclick="logistics.packageBananas()">Package Bananas</button> -->
+    </div>
+    
+    <div id="tech" class="tab-content">
+        <p>tech tree</p>
+    </div>
+    
+    <div id="logistics" class="tab-content">
+        <p>prestige or other longform progress</p>
     </div>
 
     <script type="module" src="js/main.js"></script>

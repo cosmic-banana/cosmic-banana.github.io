@@ -65,11 +65,14 @@ body {
     border: 2px solid #e73c25;
     padding: 10px;
     border-radius: 10px;
-
-    label {
+}
+.job-tab-content {
+    display: none;
+    
+    div {
         display: flex;
         justify-content: space-between;
-        width: 260px;
+        width: 230px;
 
         div {
             width: auto;

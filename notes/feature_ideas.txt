@@ -11,3 +11,7 @@ Political Events: Trade tariffs, export restrictions, and subsidies
 * jobs can have very varied outputs and some jobs can have resource drains, like R&D costs money/time
 
 - Different gameplay features (R&D)
+
+- unfolding mechanic
+
+- finish game effect at 1 quintillion $, require 3 prestiges

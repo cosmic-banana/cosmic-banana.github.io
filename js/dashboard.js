@@ -7,7 +7,7 @@ class Dashboard {
     }
 
     update() {
-        this.bananaCount += this.game.plantation.tick();
+        this.bananaCount += this.game.production.tick();
         this.dollars += this.game.sales.tick();
     }
 }

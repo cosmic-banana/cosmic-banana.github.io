@@ -1,13 +1,15 @@
-import Plantation from './plantation.js';
+import Production from './production.js';
 import Logistics from './logistics.js';
 import Dashboard from './dashboard.js';
 import Sales from './sales.js';
+import Administration from './administration.js';
 
 class Game {
-    plantation = new Plantation(this);
+    production = new Production(this);
     logistics = new Logistics(this);
     dashboard = new Dashboard(this);
     sales = new Sales(this);
+    administration = new Administration(this);
     
     updateOnTick() {
         document.getElementById('dollars').innerText = formatNumber(game.dashboard.dollars);
@@ -16,25 +18,29 @@ class Game {
     
     updateOnPurchase() {
         this.updateOnTick();
-        document.getElementById('plant-tree-cost').innerText = formatNumber(game.plantation.plantTreeCost);
-        document.getElementById('hire-worker-cost').innerText = formatNumber(game.plantation.hireWorkerCost);
-        document.getElementById('random-placeholder').innerText = formatNumber(game.sales.hireWorkerCost);
+        document.getElementById('plant-tree-cost').innerText = formatNumber(game.production.plantTreeCost);
+        document.getElementById('hire-worker-cost').innerText = formatNumber(game.administration.hireWorkerCost);
     }
     
     updateOnWorkerChange() {
-        document.getElementById('plantation-total-count').innerText = game.plantation.totalWorkerCount;
-        document.getElementById('plantation-available-count').innerText = game.plantation.getAvailableWorkerCount();
-        document.getElementById('harvest-worker-count').innerText = game.plantation.harvestWorkerCount;
-        document.getElementById('harvest-rate').innerText = game.plantation.getBananaAmount();
+        document.getElementById('harvest-rate').innerText = game.production.getBananaAmount();
+        document.getElementById('production-total-count').innerText = game.administration.workerCount;
+        document.getElementById('production-available-count').innerText = game.administration.getAvailableWorkerCount();
+        document.getElementById('harvest-worker-count').innerText = game.production.harvestWorkerCount;
+        document.getElementById('fertilize-worker-count').innerText = game.production.fertilizeWorkerCount;
+        document.getElementById('irrigate-worker-count').innerText = game.production.irrigateWorkerCount;
+        document.getElementById('pest-control-worker-count').innerText = game.production.pestControlWorkerCount;
+        document.getElementById('maintenance-worker-count').innerText = game.production.maintenanceWorkerCount;
+        document.getElementById('prune-worker-count').innerText = game.production.pruningWorkerCount;
         
-        document.getElementById('sales-total-count').innerText = game.sales.totalWorkerCount;
-        document.getElementById('sales-available-count').innerText = game.sales.getAvailableWorkerCount();
+        document.getElementById('sell-value').innerText = game.sales.getSellValue();
+        document.getElementById('sell-capacity').innerText = game.sales.getSellAmount();
+        document.getElementById('sales-total-count').innerText = game.administration.workerCount;
+        document.getElementById('sales-available-count').innerText = game.administration.getAvailableWorkerCount();
         document.getElementById('sales-worker-count').innerText = game.sales.salesWorkerCount;
         document.getElementById('sorting-worker-count').innerText = game.sales.sortingWorkerCount;
         document.getElementById('packaging-worker-count').innerText = game.sales.packagingWorkerCount;
         document.getElementById('freight-crew-worker-count').innerText = game.sales.freightCrewWorkerCount;
-        document.getElementById('sell-value').innerText = game.sales.getSellValue();
-        document.getElementById('sell-capacity').innerText = game.sales.getSellAmount();
     }
 }
 
@@ -61,17 +67,22 @@ function formatNumber(number, isMoney = true) {
     return (isMoney) ? "$" + formattedNumber : formattedNumber;
 }
 
-function openTab(tabName) {
-    var i, tabContent, tabButton;
-    tabContent = document.getElementsByClassName("tab-content");
+function openTab(tabName, element) {
+    var i, tabContent, tabButton
+    var isTabOpen = element.className.includes("active");
+    var tabType = element.className.split(" ")[0].split("-").slice(0,-1).join("-");
+    tabContent = document.getElementsByClassName(tabType + "-content");
     for (i = 0; i < tabContent.length; i++) {
         tabContent[i].style.display = "none";
     }
-    tabButton = document.getElementsByClassName("tab-button");
+    tabButton = document.getElementsByClassName(tabType + "-button");
     for (i = 0; i < tabButton.length; i++) {
         tabButton[i].className = tabButton[i].className.replace(" active", "");
     }
-    document.getElementById(tabName).style.display = "block";
+    if (!isTabOpen) {
+        element.className += " active";
+        document.getElementById(tabName).style.display = "block";
+    }
 }
 
 const game = new Game();
@@ -79,6 +90,7 @@ game.updateOnPurchase();
 game.updateOnWorkerChange();
 
 window.openTab = openTab;
-window.plantation = game.plantation;
+window.production = game.production;
 window.logistics = game.logistics;
 window.sales = game.sales;
+window.administration = game.administration;

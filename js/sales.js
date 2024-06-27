@@ -1,6 +1,4 @@
 class Sales {
-    static HIRE_WORKER_COST_GROWTH = 1.34;
-
     static BASE_SELL_AMOUNT = 1;
     static BASE_SELL_PRICE = 1;
 
@@ -14,9 +12,6 @@ class Sales {
     constructor(game) {
         this.game = game;
 
-        this.hireWorkerCost = 100;
-
-        this.totalWorkerCount = 1;
         this.salesWorkerCount = 0;
         this.sortingWorkerCount = 0;
         this.packagingWorkerCount = 0;
@@ -69,78 +64,42 @@ class Sales {
         return boost; //2, 3.2, 3.94 [. . .]
     }
 
-    getAvailableWorkerCount() {
-        return this.totalWorkerCount - 
-            this.salesWorkerCount -
-            this.sortingWorkerCount -
-            this.packagingWorkerCount -
-            this.freightCrewWorkerCount;
-    }
+    addWorker(job) {
+        if (this.game.administration.getAvailableWorkerCount() == 0)
+            return;
 
-    hireWorker() {
-        if (this.game.dashboard.dollars >= this.hireWorkerCost) {
-            this.game.dashboard.dollars -= this.hireWorkerCost;
-            this.hireWorkerCost = Math.ceil(this.hireWorkerCost * Sales.HIRE_WORKER_COST_GROWTH);
-            this.totalWorkerCount++;
-            this.game.updateOnPurchase();
-            this.game.updateOnWorkerChange();
+        switch(job) {
+            case "salesman":
+                this.salesWorkerCount++;
+                break;
+            case "packaging":
+                this.packagingWorkerCount++;
+                break;
+            case "sorting":
+                this.sortingWorkerCount++;
+                break;
+            case "freightCrew":
+                this.freightCrewWorkerCount++;
+                break;
         }
-    }
-
-    addSalesWorker() {
-        if (this.getAvailableWorkerCount() > 0) {
-            this.salesWorkerCount++;
-            this.game.updateOnWorkerChange();
-        }
+        this.game.updateOnWorkerChange();
     }
     
-    removeSalesWorker() {
-        if (this.salesWorkerCount > 0) {
-            this.salesWorkerCount--;
-            this.game.updateOnWorkerChange();
+    removeWorker(job) {
+        if (job === "salesman") {
+            if (this.salesWorkerCount > 0)
+                this.salesWorkerCount--;
+        } else if (job === "packaging") {
+            if (this.packagingWorkerCount > 0)
+                this.packagingWorkerCount--;
+        } else if (job === "sorting") {
+            if (this.sortingWorkerCount > 0)
+                this.sortingWorkerCount--;
+        } else if (job === "freightCrew") {
+            if (this.freightCrewWorkerCount > 0)
+                this.freightCrewWorkerCount--;
         }
-    }
-
-    addSortingWorker() {
-        if (this.getAvailableWorkerCount() > 0) {
-            this.sortingWorkerCount++;
-            this.game.updateOnWorkerChange();
-        }
-    }
-    
-    removeSortingWorker() {
-        if (this.sortingWorkerCount > 0) {
-            this.sortingWorkerCount--;
-            this.game.updateOnWorkerChange();
-        }
-    }
-
-    addPackagingWorker() {
-        if (this.getAvailableWorkerCount() > 0) {
-            this.packagingWorkerCount++;
-            this.game.updateOnWorkerChange();
-        }
-    }
-    
-    removePackagingWorker() {
-        if (this.packagingWorkerCount > 0) {
-            this.packagingWorkerCount--;
-            this.game.updateOnWorkerChange();
-        }
-    }
-
-    addFreightCrewWorker() {
-        if (this.getAvailableWorkerCount() > 0) {
-            this.freightCrewWorkerCount++;
-            this.game.updateOnWorkerChange();
-        }
-    }
-    
-    removeFreightCrewWorker() {
-        if (this.freightCrewWorkerCount > 0) {
-            this.freightCrewWorkerCount--;
-            this.game.updateOnWorkerChange();
-        }
+        this.game.updateOnWorkerChange();
     }
 
 }
