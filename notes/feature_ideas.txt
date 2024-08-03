@@ -12,6 +12,6 @@ Political Events: Trade tariffs, export restrictions, and subsidies
 
 - Different gameplay features (R&D)
 
-- unfolding mechanic
+- finish game effect at 1$ quintillion, require 3 prestiges
 
-- finish game effect at 1 quintillion $, require 3 prestiges
+- plantation expansion (more room for trees etc.)

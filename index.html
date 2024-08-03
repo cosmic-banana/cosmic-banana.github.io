@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banana Empire</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <h1>Banana Empire</h1>
@@ -19,6 +21,171 @@
         <button class="tab-button" onclick="openTab('tech', this)">Technology</button>
         <button class="tab-button" onclick="openTab('logistics', this)">Logistics</button>
     </div>
+
+    <!-- ============ DEMO START ============ -->
+
+    <div>
+        <h1>demo area</h1>
+
+        <div style="border: 2px solid;">
+            <button id="water-tree" title="Water Tree" onclick="evolve()">
+                <span class="material-symbols-outlined"> psychiatry </span>
+            </button>
+            <div class="button-wrapper">
+                <button id="fertilize-tree" title="Fertilize Tree" style="width: 200px" onclick="grow(); startCooldown()">
+                    Grow Tree
+                    <span class="material-symbols-outlined"> water_drop </span>
+                </button>
+                <div id="overlay" class="overlay"></div>
+            </div>
+            <div style="display: flex">
+                <div id="tree-health" style="width: 400px; height: 30px; border-radius: 20px; background: lightgrey;">
+                    <div id="health-bar" style="width: 0%; height: inherit; border-radius: 20px; background: green; transition: width 0.2s ease-out;"></div>
+                </div>
+                <div id="tree-counter">mature trees: 3</div>
+            </div>
+            <p id="growth-stage">Growth Stage: Sprout</p>
+        </div>
+
+        <div style="border: 2px solid #d8993a;">
+            <div id="harvest-cycle">0</div>
+            <button disabled id="harvest" onclick="harvestBanana()">harvest</button>
+            <p>Fruit bearing trees: <span id="fruit-bearing-trees-left">0</span> / <span id="fruit-bearing-trees-total">0</span></p>
+            <p>Demo bananas: <span id="demo-banana-count">0</span></p>
+        </div>
+        <div style="border: 2px solid #3aa6d8;">
+            pest control
+        </div>
+        <br>
+        <div style="border: 2px solid #d83a3a;">
+            sell
+        </div>
+        <button>
+            <span class="material-symbols-outlined"> potted_plant </span>
+            <span class="material-symbols-outlined"> local_shipping </span>
+            <span class="material-symbols-outlined"> package_2 </span>
+            <span class="material-symbols-outlined"> category </span>
+            <span class="material-symbols-outlined"> sort </span>
+            <span class="material-symbols-outlined"> park </span>
+            <span class="material-symbols-outlined"> inventory </span>
+            <span class="material-symbols-outlined"> trolley </span>
+            <span class="material-symbols-outlined"> box </span>
+            <span class="material-symbols-outlined"> attach_money </span>
+            <span class="material-symbols-outlined"> database </span>
+            <span class="material-symbols-outlined"> pest_control </span>
+            <span class="material-symbols-outlined"> content_cut </span>
+            <span class="material-symbols-outlined"> experiment </span>
+            <span class="material-symbols-outlined"> compost </span>
+        </button>
+        <br>
+        <button>
+            <i class="fa-solid fa-trowel"></i>
+        </button>
+
+    </div>
+    <style>
+        .fa-solid {
+            font-size: 18px;
+            color: #115511;
+        }
+    </style>
+    <script>
+        var harvestCycle = 0;
+        var harvestsThisCycle = 0;
+        setInterval(() => {
+            harvestCycle++
+            harvestCycle = harvestCycle%60;
+            if (harvestCycle == 47) {
+                document.getElementById("harvest").disabled = false;
+                document.getElementById("fruit-bearing-trees-left").innerText = matureTrees;
+                document.getElementById("fruit-bearing-trees-total").innerText = matureTrees;
+            }
+            if (harvestCycle == 0) {
+                harvestsThisCycle = 0;
+                document.getElementById("harvest").disabled = true;
+                document.getElementById("fruit-bearing-trees-left").innerText = 0;
+                document.getElementById("fruit-bearing-trees-total").innerText = 0;
+            }
+            document.getElementById("harvest-cycle").innerText = harvestCycle;
+        }, 1000);
+
+        var demoBananas = 0
+        function harvestBanana() {
+            harvestsThisCycle++;
+            demoBananas++;
+            document.getElementById('demo-banana-count').innerText = demoBananas;
+            let fruitBearingTreesLeft = matureTrees - Math.floor(harvestsThisCycle / 3);
+            document.getElementById("fruit-bearing-trees-left").innerText = fruitBearingTreesLeft;
+            if (fruitBearingTreesLeft == 0) {
+                document.getElementById("harvest").disabled = true;
+            }
+        }
+
+        var timeLeft;
+        const button = document.getElementById('fertilize-tree');
+        const buffer = button.cloneNode(true);
+
+        function startCooldown() {
+            button.disabled = true;
+            document.getElementById("overlay").style.zIndex = 9
+            timeLeft = 1;
+            cooldown();
+        }
+        function cooldown() {
+            if (timeLeft > 0) {
+                document.getElementById("overlay").style.height = (--timeLeft*20)+"%";
+                setTimeout(cooldown, 1000)
+            } else {
+                button.disabled = false;
+                button.innerHTML = buffer.innerHTML;
+                document.getElementById("overlay").style.zIndex = -9
+                setTimeout(() => {document.getElementById("overlay").style.height = "100%"}, 300);
+            }
+        }
+        matureTrees = 3;
+        stage = 0;
+        growth = 0;
+        function grow() {
+            if (growth < 100) {
+                growth += 28;
+                growth = Math.min(100, growth);
+            }
+            setGrowthStatus(growth);
+        }
+        function evolve() {
+            if (growth == 100) {
+                stage++;
+                growth = 0;
+                if (stage == 3) {
+                    matureTrees++;
+                    stage = 0;
+                    document.getElementById("tree-counter").innerText = "mature trees: " + matureTrees;
+                }
+                setGrowthStatus(growth);
+            }
+        }
+        function setGrowthStatus(growth) {
+            growthText = "Growth Stage: ";
+            switch(stage) {
+                case 0:
+                    growthText += "Sprout";
+                    break;
+                case 1:
+                    growthText += "Seedling";
+                    break;
+                case 2:
+                    growthText += "Sapling";
+                    break;
+                default:
+                    growthText += "Mature";
+                    break;
+            }
+            document.getElementById("growth-stage").innerText = growthText;
+            document.getElementById("health-bar").style.width = growth + "%";
+        }
+    </script>
+
+    <!-- ============= DEMO END ============= -->
 
     <div id="production" class="tab-content">
         <div id="stats">

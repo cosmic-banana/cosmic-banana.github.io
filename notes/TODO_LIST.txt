@@ -1,1 +1,3 @@
 - tooltips for jobs (flavor text + exact formula)
+
+- unfolding mechanics
